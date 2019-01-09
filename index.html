@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        
+        <title>LFC Match Geographic Center</title>
+        <link rel="icon" href="img/ynwa.ico">
+        
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css">
+        <link rel="stylesheet" href="css/style.css">
+        
+    </head>
+    
+    <body>
+        
+        <div id="earth"></div>
+        
+        <div id="objects">
+            <select id="game-select">
+                <option value="top">Select a game</option>
+            </select>
+        </div>
+        <div id='overlay'>
+            <br><br><br><br>
+            <h2 class='overlay-text font'>LIVERPOOL FC 2018/19 TEAM GEOGRAPHIC CENTER</h2>
+            <div id='intro'>
+                <p class='overlay-text font'>- - BETA - -</p>
+                <p class='overlay-text font'>THE FOLLOWING MAP SHOWS THE "GEOGRAPHIC CENTER" OF THE STARTING XI PLUS SUBSTITUES FOR EACH LFC 18/19 PREMIER LEAGUE GAME. EACH MATCH'S CENTER IS CALCULATED BASED ON WHO PLAYED, HOW MANY MINUTES THEY PLAYED, AND THEIR HOME TOWN. FOR EXAMPLE, SOMEONE WHO PLAYS 90 MINUTES WILL PULL THE CENTER TOWARDS THEIR HOME TOWN SIGNIFICANTLY MORE THAN SOMEONE WHO ONLY PLAYS FOR 5 MINUTES.</p>
+                <p class='overlay-text font'>USE THE DROP DOWN ON THE TOP RIGHT CORNER OF THE MAP TO TOGGLE BETWEEN GAMES.</p>
+                <br>
+                <button id='button' class='font' type='button'>GO TO MAP</button>
+                <br><br><br><br>
+                <p id='dev' class='overlay-text font'>DEVELOPED BY <a href='httpS://jmjfisher.com/' target="_blank">JOHNMARK FISHER</a></p>
+            </div>
+        </div>
+        
+        <!--SCRIPTS-->
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+        <script src="http://www.webglearth.com/v2/api.js"></script>
+        
+        <script src="js/main_globe.js"></script>
+    
+    </body>
+    
+</html>

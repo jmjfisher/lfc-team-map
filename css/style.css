@@ -1,0 +1,74 @@
+@font-face {
+  font-family: village;
+  src: url(village.ttf);
+}
+
+html, body, #earth {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+#objects {
+    position: fixed;
+    padding: 0px;
+    margin: 0;
+    right: 7px;
+    top: 7px;
+    background-color: white;
+}
+
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background-color: rgba(50,8,10,1);
+    z-index: 999999;
+    text-align: center;
+}
+
+#intro {
+    max-width: 700px;
+    text-align: center;
+    display: inline-block
+}
+
+.overlay-text {
+    color: #FFB612;
+}
+
+#button {
+    background-color: #FFB612;
+    border: 2px solid #32080a;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-size: 16pt;
+    color: #32080a;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+#button:hover {
+    background-color: #32080a;
+    border: 2px solid #FFB612;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-size: 16pt;
+    color: #FFB612;
+}
+
+.font {
+    font-family: village;
+}
+
+#title {
+    line-height: 0em;
+    padding-top: .5vh;
+    padding-left: 120px;
+}
