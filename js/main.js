@@ -1,22 +1,15 @@
-function initializeGlobe() {
+function initializeMap() {
     
     $('#button').click(function(){
         $('#overlay').css("display","none")
     });
     
-    var map = L.map('earth', {
-        center: [53.431315, -2.960798],
-        zoom: 14
+    var map = L.map('map', {
+        center: [38.431315, -2.960798],
+        zoom: 4
     });
     
     var streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiam1qZmlzaGVyIiwiYSI6ImNqYXVlNDg3cDVhNmoyd21oZ296ZXpwdWMifQ.OGprR1AOquImP-bemM-f2g').addTo(map);
-    
-    var anfieldIcon = L.icon({
-        iconUrl: 'img/anfield.svg',
-        iconSize: [100,100]
-    });
-    
-    var anfield = L.marker([53.431315, -2.960798], {icon: anfieldIcon}).addTo(map);
     
     $('#game-select').change(function(e){
         var value = $('#game-select').val();
@@ -28,7 +21,74 @@ function initializeGlobe() {
         updateMap(map,value);
     });
     
-}; // end initializeGlobe
+    $('#play').click(function(e){
+        
+        console.log("play clicked")
+        
+        map.eachLayer(function (layer) {
+            if (layer != streets) {
+                map.removeLayer(layer);
+            };
+        });
+        
+        animatePoints(map);
+    });
+    
+}; // end initializeMap
+
+function animatePoints(map){
+    
+    seasons = ['X19921993','X19931994','X19941995','X19951996','X19961997','X19971998','X19981999','X19992000','X20002001','X20012002','X20022003','X20032004','X20042005','X20052006','X20062007','X20072008','X20082009','X20092010','X20102011','X20112012','X20122013','X20132014','X20142015','X20152016','X20162017','X20172018','X20182019'];
+    
+    var totalSeasons = seasons.length;
+    console.log(totalSeasons)
+    
+    pointsDict = {};
+    
+    $.getJSON("data/base.geojson", function(data){
+        
+        for (i=0; i<data.features.length; i++){
+            
+            var season = String(data.features[i].properties.SEASON);
+            pointsDict[season] = data.features[i];
+            
+        };
+    });
+    
+    console.log(pointsDict)
+
+    var markerOptions = {
+        "radius": 8,
+        fillColor: "#ff7800",
+        "color": "#ff7800",
+        "weight": 1,
+        "opacity": 0.4,
+        fillOpacity: 0.0
+    };
+    /*
+    var seasonPoints = L.geoJSON(data, {
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, markerOptions);
+        }
+    }).addTo(map);
+    */
+    q = 0;
+    function timingLoop() {
+        
+        if (q >= totalSeasons) {
+            clearInterval()
+        } else {
+            console.log(q)
+            var season = seasons[q];
+            var geoFeature = pointsDict[season];
+            L.geoJSON(geoFeature).addTo(map);
+            q++
+        }
+    };
+
+    setInterval(timingLoop,1000)
+    
+}; // end animatePoints
 
 function updateMap(map,value) {
     
@@ -124,5 +184,5 @@ function fillSelect() {
     
 }; // end fillSelect
 
-$(document).ready(fillSelect);
-$(document).ready(initializeGlobe);
+//$(document).ready(fillSelect);
+$(document).ready(initializeMap);

@@ -3,7 +3,7 @@
   src: url(village.ttf);
 }
 
-html, body, #earth {
+html, body, #map {
     padding: 0;
     margin: 0;
     height: 100%;
@@ -21,6 +21,7 @@ html, body, #earth {
 }
 
 #overlay {
+    display:none;
     position: fixed;
     width: 100%;
     height: 100%;
