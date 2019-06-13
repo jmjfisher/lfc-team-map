@@ -9,16 +9,21 @@ function initializeMap() {
         zoom: 4
     });
     
+    var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 16,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
     var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
         {
             attribution: 'Basemap &copy; Esri',
             maxZoom: 16
-        }).addTo(map);
+        });
     
     $('#game-select').change(function(e){
         var value = $('#game-select').val();
         map.eachLayer(function (layer) {
-            if (layer != Esri_WorldGrayCanvas) {
+            if (layer != OpenStreetMap_Mapnik) {
                 map.removeLayer(layer);
             };
         });
@@ -28,7 +33,7 @@ function initializeMap() {
     $('#play').click(function(e){
         
         map.eachLayer(function (layer) {
-            if (layer != Esri_WorldGrayCanvas) {
+            if (layer != OpenStreetMap_Mapnik) {
                 map.removeLayer(layer);
             };
         });
